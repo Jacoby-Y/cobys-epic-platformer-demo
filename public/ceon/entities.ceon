@@ -3,6 +3,11 @@
     RigidBody(0.1, 0.1, 0.03, 0.8, 0.99)
     Box(50, 50, "#00FFFF")
     Player("Jeff")
+
+    // Just animates the little square on top of the player
+    // 1000 = 1 second = 2 seconds to move to keyframe and move back
+    Animation(1000)
+    // It's a little manual, but I'll figure something better out letter
 }
 {
     Position(10, 690)

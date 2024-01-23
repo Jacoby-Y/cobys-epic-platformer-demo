@@ -65,3 +65,43 @@ export class Player extends Component {
     }
 }
 
+export class Animation extends Component {
+    constructor(
+        public max_time: number,
+        public time = 0,
+        private increasing = true,
+    ) {
+        super();
+    }
+
+    addTime(delta_time: number) {
+        if (this.increasing) {
+            this.time += delta_time;
+
+            if (this.time >= this.max_time) {
+                this.time = this.max_time;
+                this.increasing = false;
+            }
+        } else {
+            this.time -= delta_time;
+
+            if (this.time <= 0) {
+                this.time = 0;
+                this.increasing = true;
+            }
+        }
+    }
+
+    /** Gets the percentage of the time moving back and forth from 0 and max_time */
+    get fullPercentage() {
+        return this.time / this.max_time;
+    }
+
+    /** Gets percentage of time only moving forward */
+    get halfPercentage() {
+        if (this.increasing) {
+            return this.fullPercentage;
+        }
+        return 1 - this.fullPercentage;
+    }
+}

@@ -2,7 +2,7 @@ import { runner, startGame } from "cobys-epic-engine/runner";
 import { clearCanvas, createCanvas } from "cobys-epic-engine/draw";
 import { runAllSystems } from "cobys-epic-ecs/system";
 import { Position, RigidBody } from "cobys-epic-ecs/component";
-import { Box, Collider, Player } from "./components";
+import { Box, Collider, Player, Animation } from "./components";
 import { fetchCompileCeon } from "cobys-epic-ecs/ceon";
 
 import "./systems";
@@ -18,7 +18,7 @@ startGame();
 
 
 const used_components = {
-    Position, RigidBody, Collider, Box, Player
+    Position, RigidBody, Collider, Box, Player, Animation
 };
 
 // Use CEON (Coby's Epic (ECS) Object Notation) to load entities
