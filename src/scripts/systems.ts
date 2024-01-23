@@ -20,7 +20,7 @@ addSystem([Position, RigidBody], (pos: Position, rb: RigidBody)=>{
     }
 });
 
-addSystem([Position, Box, Collider], (pos1: Position, box1: Box, c)=>{
+addSystem([Position, Box, Collider], (pos1: Position, box1: Box, _c)=>{
     const bodies = queryEntities(Position, Box, RigidBody);
 
     for (let i = 0; i < bodies[0].length; i++) {
@@ -55,7 +55,7 @@ addSystem([Position, Box, Collider], (pos1: Position, box1: Box, c)=>{
     }
 });
 
-addSystem([RigidBody, Player], (rb: RigidBody, player)=>{
+addSystem([RigidBody, Player], (rb: RigidBody, _player)=>{
     const { horz, vert } = getScoreboard(Controller) as Controller;
 
     rb.vx += horz * 0.1;
