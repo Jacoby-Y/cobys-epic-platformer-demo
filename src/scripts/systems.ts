@@ -35,13 +35,13 @@ addSystem([Position, RigidBody], (pos: Position, rb: RigidBody)=>{
 });
 
 // Colliding rigidbodies with static colliders
-addSystem([Position, Box, Collider], (pos1: Position, box1: Box, _c)=>{
+addSystem([Position, Box, Collider], (pos1: Position, box1: Box, col: Collider)=>{
     const bodies = queryEntities(Position, Box, RigidBody);
 
     for (let i = 0; i < bodies[0].length; i++) {
         const [pos2, box2, rb2] = [bodies[0][i], bodies[1][i], bodies[2][i]] as [Position, Box, RigidBody];
         
-        if (box1.boxCollision(pos1, pos2, box2)) {
+        if (col.boxCollision(pos1, box1, pos2, box2)) {
             const right = Math.abs((pos1.x) - (pos2.x + box2.w));
             const left = Math.abs((pos1.x + + box1.w) - (pos2.x));
             const top = Math.abs((pos2.y + box2.h) - pos1.y);

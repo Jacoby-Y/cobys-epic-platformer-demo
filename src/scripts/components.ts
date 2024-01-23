@@ -2,6 +2,7 @@ import Component, { Position } from "cobys-epic-ecs/component";
 import { fillRect } from "cobys-epic-engine/draw";
 
 
+/** Requires: Position. Draws a box. */
 export class Box extends Component {
     constructor(
         public w: number,
@@ -18,16 +19,23 @@ export class Box extends Component {
             this.color
         );
     }
+}
 
-    boxCollision(pos1: Position, pos2: Position, box2: Box): boolean {
+/** Requires: Position, Box. Tells engine that this is a Collider */
+export class Collider extends Component {
+    constructor() {
+        super();
+    }
+
+    boxCollision(pos1: Position, box1: Box, pos2: Position, box2: Box): boolean {
         // Don't you just love ChatGPT?
         // Sure, I could've pretty easily done this, but... eh.
 
         // Calculate the boundaries of the two boxes
         const left1 = pos1.x;
-        const right1 = pos1.x + this.w;
+        const right1 = pos1.x + box1.w;
         const top1 = pos1.y;
-        const bottom1 = pos1.y + this.h;
+        const bottom1 = pos1.y + box1.h;
     
         const left2 = pos2.x;
         const right2 = pos2.x + box2.w;
@@ -50,12 +58,7 @@ export class Box extends Component {
     }
 }
 
-export class Collider extends Component {
-    constructor() {
-        super();
-    }
-}
-
+/** Tells engine this is a Player (also, allows you to name your character, I guess lol) */
 export class Player extends Component {
     constructor(
         // Just for fun
@@ -65,6 +68,7 @@ export class Player extends Component {
     }
 }
 
+/** Creates a value that moves between 0 and 1, then back to 0, in the time given (in milliseconds) */
 export class Animation extends Component {
     constructor(
         public max_time: number,

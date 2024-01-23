@@ -4,7 +4,9 @@ import { clamp } from "cobys-epic-engine/cobys-utils";
 import { Controller } from "./scoreboards";
 
 
+/** if keys[<key>] === true: <key> is currently being pressed */
 const keys: Record<string, boolean> = {}
+
 
 window.onkeydown = ({ key })=>{
     keys[key.toLowerCase()] = true;
@@ -18,13 +20,15 @@ window.onkeyup = ({ key })=>{
     signal.emit("KeyEvent", keys);
 }
 
+
+// Listens for WASD key events to move the player
 signal.listen("KeyEvent", (keys)=>{
     let horz = 0;
     let vert = 0;
 
     if (keys.a) horz -= 1;
     if (keys.d) horz += 1;
-    if (keys.w) vert -= 1;
+    if (keys.w || keys[" "]) vert -= 1;
     if (keys.s) vert += 1;
 
     const controller = getScoreboard(Controller) as Controller;
