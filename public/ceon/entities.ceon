@@ -1,0 +1,21 @@
+{
+    Position(500, 300)
+    RigidBody(0.1, 0.1, 0.03, 0.8, 0.99)
+    Box(50, 50, "#00FFFF")
+    Player("Jeff")
+}
+{
+    Position(10, 690)
+    Box(980, 100, "#777777")
+    Collider()
+}
+{
+    Position(350, 590)
+    Box(100, 100, "#777777")
+    Collider()
+}
+{
+    Position(450, 390)
+    Box(100, 100, "#777777")
+    Collider()
+}
